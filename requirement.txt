@@ -1,0 +1,17 @@
+openai
+langchain
+langchain-community
+langchain-redis
+langchain_openai
+langchain-chroma
+gradio
+chromadb 
+openai-agents 
+streamlit 
+httpx 
+bs4 
+python-dotenv 
+configparser 
+pushover 
+openai_agents 
+langchain_openai
