@@ -23,20 +23,6 @@ load_dotenv()
 import asyncio
 import nest_asyncio
 
-# Load from .env (lowercase in your env)
-API_KEY = os.getenv("openai_api_key")
-
-if not API_KEY:
-    st.error("Missing openai_api_key in environment.")
-    st.stop()
-
-PUSHOVER_API_TOKEN=os.getenv('PUSHOVER_API_TOKEN')
-PUSHOVER_USER_KEY=os.getenv('PUSHOVER_USER_KEY')
-
-# Make it visible to OpenAI + agents (uppercase required)
-os.environ["OPENAI_API_KEY"] = API_KEY
-
-TARGET_URL=os.environ['TARGET_URL']
 
 
 try:
