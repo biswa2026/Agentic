@@ -30,6 +30,9 @@ if not API_KEY:
     st.error("Missing openai_api_key in environment.")
     st.stop()
 
+PUSHOVER_API_TOKEN=os.getenv('PUSHOVER_API_TOKEN')
+PUSHOVER_USER_KEY=os.getenv('PUSHOVER_USER_KEY')
+
 # Make it visible to OpenAI + agents (uppercase required)
 os.environ["OPENAI_API_KEY"] = API_KEY
 
@@ -127,6 +130,28 @@ def scrape_url(url: str) -> str:
 
     except Exception as e:
         return f"Error scraping {url}: {e}"
+
+#PUSHOVER
+
+def send_pushover(title: str, message: str):
+    """Send a Pushover notification to the developer."""
+    if not PUSHOVER_USER_KEY or not PUSHOVER_API_TOKEN:
+        return  # silently ignore if config missing
+
+    try:
+        requests.post(
+            "https://api.pushover.net/1/messages.json",
+            data={
+                "token": PUSHOVER_API_TOKEN,
+                "user": PUSHOVER_USER_KEY,
+                "title": title,
+                "message": message
+            },
+            timeout=10
+        )
+    except Exception as e:
+        print(f"Pushover error: {e}")
+
 
 
 # ============================================================
@@ -246,27 +271,41 @@ for msg in st.session_state.messages[-MAX_HISTORY:]:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-
 # ============================================================
 # CHAT INPUT
 # ============================================================
 if prompt := st.chat_input("Ask something..."):
+
+    # store user message
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     with st.chat_message("user"):
         st.markdown(prompt)
 
+    # detect email in user prompt
     emails = EMAIL_REGEX.findall(prompt)
 
-    # Email handling
+    # ============================================================
+    # EMAIL HANDLING + PUSHOVER
+    # ============================================================
     if emails:
         email = emails[0]
+
+        # 🔔 Send pushover alert
+        send_pushover(
+            "Email Shared in Assistant",
+            f"User shared email: {email}\nPrompt: {prompt}"
+        )
+
         reply = f"Thanks! I’ll reach out to **{email}** soon."
         st.session_state.messages.append({"role": "assistant", "content": reply})
 
         with st.chat_message("assistant"):
             st.markdown(reply)
 
+    # ============================================================
+    # NORMAL QUESTION HANDLING
+    # ============================================================
     else:
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
@@ -281,9 +320,19 @@ if prompt := st.chat_input("Ask something..."):
                 )
 
                 answer = result.final_output.strip()
+
+                # Out-of-box detection
                 if "NO_CONTEXT_FOUND" in answer.upper():
-                    answer = "I don’t have info on that yet — try asking something else."
+
+                    # 🔔 Send pushover alert
+                    send_pushover(
+                        "Out-of-Box Question Asked",
+                        f"User asked something outside indexed context:\n{prompt}"
+                    )
+
+                    answer = (
+                        "I don’t have info on that yet — try asking something else."
+                    )
 
                 st.markdown(answer)
                 st.session_state.messages.append({"role": "assistant", "content": answer})
-
