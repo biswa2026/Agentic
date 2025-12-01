@@ -1,0 +1,10 @@
+streamlit
+requests
+httpx
+beautifulsoup4
+chromadb
+langchain-openai
+langchain-text-splitters
+nest_asyncio
+python-dotenv
+openai-agents
