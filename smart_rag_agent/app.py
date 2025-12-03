@@ -1,10 +1,15 @@
-import streamlit as st
-st.write("🔑 DEBUG: Secrets loaded = ", bool(st.secrets.get("OPENAI_API_KEY")))
-st.write("First 15 chars of key →", st.secrets.get("OPENAI_API_KEY", "MISSING")[:15] if st.secrets.get("OPENAI_API_KEY") else "MISSING")
-st.write("Total secrets keys →", list(st.secrets.keys()) if st.secrets else "NO SECRETS AT ALL")
 import os
-st.write("os.getenv length →", len(os.getenv("OPENAI_API_KEY", "")))
-st.write("os.getenv first 15 →", os.getenv("OPENAI_API_KEY", "MISSING")[:15])
+import streamlit as st
+
+# Load secrets from GitHub Actions (Streamlit Cloud) OR fall back to st.secrets (local)
+for key in ["OPENAI_API_KEY", "PUSHOVER_API_TOKEN", "PUSHOVER_USER_KEY", "TARGET_URL"]:
+    if key not in os.environ:
+        os.environ[key] = st.secrets.get(key, "") if "st.secrets" in globals() else ""
+
+# Optional: quick visual confirmation (remove later if you want)
+st.write("All secrets loaded →", 
+         len(os.getenv("OPENAI_API_KEY", "")) == 168,  # should be True
+         "TARGET_URL →", os.getenv("TARGET_URL"))
 
 import streamlit as st
 from config.settings import TARGET_URL
