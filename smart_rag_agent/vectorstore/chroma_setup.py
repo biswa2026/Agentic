@@ -1,13 +1,13 @@
 # vectorstore/chroma_setup.py
 import chromadb
 from chromadb.utils import embedding_functions
-from config.settings import (
+'''from config.settings import (
     API_KEY,
     EMBEDDING_MODEL,
     CHROMA_PATH,
     COLLECTION_NAME,
     MAX_CHUNK_CHARS
-)
+)'''
 import streamlit as st
 from datetime import datetime
 
