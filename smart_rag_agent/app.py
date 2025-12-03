@@ -53,6 +53,8 @@ if not domain_name:
 st.title("Smart RAG Assistant")
 st.caption(f"Ask anything — Knowledge sourced from **{domain_name}**")
 
+# Force redeploy after adding GitHub Actions secrets
+
 # Session state
 if "messages" not in st.session_state:
     st.session_state.messages = []
