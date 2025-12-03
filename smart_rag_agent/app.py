@@ -11,6 +11,14 @@ st.write("All secrets loaded →",
          len(os.getenv("OPENAI_API_KEY", "")) == 168,  # should be True
          "TARGET_URL →", os.getenv("TARGET_URL"))
 
+if not os.path.exists("chroma_db"):   # ← this folder is created only after first successful indexing
+    with st.spinner("First time setup: Indexing TP-Link Router docs into vector DB (4–7 min one-time only)..."):
+        auto_index()                      # your existing function
+    st.success("Indexing complete! Ready to chat.")
+else:
+    st.success("Vector DB already exists – instant loading")
+    st.success(f"Secrets OK | Key length: {len(os.getenv('OPENAI_API_KEY'))} | URL: {os.getenv('TARGET_URL')}")
+
 import streamlit as st
 #from config.settings import TARGET_URL
 from scraper.web_scraper import scrape_url
