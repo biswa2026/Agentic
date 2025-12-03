@@ -1,4 +1,12 @@
 import streamlit as st
+st.write("🔑 DEBUG: Secrets loaded = ", bool(st.secrets.get("OPENAI_API_KEY")))
+st.write("First 15 chars of key →", st.secrets.get("OPENAI_API_KEY", "MISSING")[:15] if st.secrets.get("OPENAI_API_KEY") else "MISSING")
+st.write("Total secrets keys →", list(st.secrets.keys()) if st.secrets else "NO SECRETS AT ALL")
+import os
+st.write("os.getenv length →", len(os.getenv("OPENAI_API_KEY", "")))
+st.write("os.getenv first 15 →", os.getenv("OPENAI_API_KEY", "MISSING")[:15])
+
+import streamlit as st
 from config.settings import TARGET_URL
 from scraper.web_scraper import scrape_url
 from vectorstore.chroma_setup import get_collection, store_in_chroma
@@ -8,12 +16,6 @@ from tools.notifications import send_pushover
 from utils.helpers import *  # applies nest_asyncio
 
 import os
-import streamlit as st
-print("=== DEBUG API KEY ===")
-print("os.getenv →", bool(os.getenv("OPENAI_API_KEY")))
-print("First 10 chars →", os.getenv("OPENAI_API_KEY", "NONE")[:10])
-print("Full length →", len(os.getenv("OPENAI_API_KEY", "")) if os.getenv("OPENAI_API_KEY") else 0)
-print("st.secrets →", "OPENAI_API_KEY" in st.secrets)
 st.set_page_config(page_title="Smart RAG Assistant", page_icon="🤖", layout="centered")
 
 domain_name = (TARGET_URL or "").replace("https://", "").replace("www.", "").split("/")[0].title()
