@@ -1,5 +1,5 @@
 import requests
-from config.settings import PUSHOVER_API_TOKEN, PUSHOVER_USER_KEY
+#from config.settings import PUSHOVER_API_TOKEN, PUSHOVER_USER_KEY
 
 def send_pushover(title: str, message: str):
     if not PUSHOVER_USER_KEY or not PUSHOVER_API_TOKEN:
