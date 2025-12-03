@@ -18,6 +18,15 @@ from utils.helpers import *  # applies nest_asyncio
 import os
 st.set_page_config(page_title="Smart RAG Assistant", page_icon="🤖", layout="centered")
 
+
+if "OPENAI_API_KEY" not in os.environ:
+    # Only needed when running locally
+    import streamlit as st
+    os.environ["OPENAI_API_KEY"] = st.secrets.get("OPENAI_API_KEY", "")
+    os.environ["PUSHOVER_API_TOKEN"] = st.secrets.get("PUSHOVER_API_TOKEN", "")
+    os.environ["PUSHOVER_USER_KEY"] = st.secrets.get("PUSHOVER_USER_KEY", "")
+    os.environ["TARGET_URL"] = st.secrets.get("TARGET_URL", "")
+
 domain_name = (TARGET_URL or "").replace("https://", "").replace("www.", "").split("/")[0].title()
 st.title("Smart RAG Assistant")
 st.caption(f"Ask anything — Knowledge sourced from **{domain_name}**")
