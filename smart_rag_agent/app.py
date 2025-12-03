@@ -24,8 +24,24 @@ import os
 st.set_page_config(page_title="Smart RAG Assistant", page_icon="🤖", layout="centered")
 
 
+# OLD (delete this)
+# domain_name = (TARGET_URL or "").replace...
 
-domain_name = (TARGET_URL or "").replace("https://", "").replace("www.", "").split("/")[0].title()
+# NEW (copy-paste this exact block)
+import os
+TARGET_URL = os.getenv("TARGET_URL", "").strip()
+
+# Now safe extraction
+domain_name = (
+    TARGET_URL.replace("https://", "")
+              .replace("http://", "")
+              .replace("www.", "")
+              .split("/")[0]
+              .split(":")[0]   # handles ports if any
+              .title()
+)
+if not domain_name:
+    domain_name = "Link Router Docs"
 st.title("Smart RAG Assistant")
 st.caption(f"Ask anything — Knowledge sourced from **{domain_name}**")
 
