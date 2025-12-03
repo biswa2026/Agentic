@@ -7,6 +7,13 @@ from agents import Runner, SQLiteSession
 from tools.notifications import send_pushover
 from utils.helpers import *  # applies nest_asyncio
 
+import os
+import streamlit as st
+print("=== DEBUG API KEY ===")
+print("os.getenv →", bool(os.getenv("OPENAI_API_KEY")))
+print("First 10 chars →", os.getenv("OPENAI_API_KEY", "NONE")[:10])
+print("Full length →", len(os.getenv("OPENAI_API_KEY", "")) if os.getenv("OPENAI_API_KEY") else 0)
+print("st.secrets →", "OPENAI_API_KEY" in st.secrets)
 st.set_page_config(page_title="Smart RAG Assistant", page_icon="🤖", layout="centered")
 
 domain_name = (TARGET_URL or "").replace("https://", "").replace("www.", "").split("/")[0].title()
