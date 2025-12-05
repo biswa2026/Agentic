@@ -1,5 +1,5 @@
 # utils/helpers.py
-import asyncio
+'''import asyncio
 import nest_asyncio
 
 def apply_nest_asyncio():
@@ -12,4 +12,5 @@ def apply_nest_asyncio():
 try:
     apply_nest_asyncio()
 except RuntimeError:  # no running loop yet → fine, we'll apply later
-    pass
+    pass'''
+pass
