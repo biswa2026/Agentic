@@ -1,8 +1,16 @@
 
 
 from openai import OpenAI
-client = OpenAI()
 
+_client_instance = None
+
+def get_openai_client() -> OpenAI:
+    global _client_instance
+    if _client_instance is None:
+        # At this point Streamlit has already injected the secret into os.environ
+        _client_instance = OpenAI()
+    return _client_instance
+    
 # 1. ModelSettings — just a tiny container
 class ModelSettings:
     def __init__(self, max_tokens=512):
