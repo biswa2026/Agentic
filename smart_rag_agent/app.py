@@ -27,6 +27,8 @@ domain_name = (
 # Final status
 st.success(f"Ready! Key length: {len(os.getenv('OPENAI_API_KEY', ''))} | Source: {domain_name}")
 
+from utils.helpers import apply_nest_asyncio
+apply_nest_asyncio()   # safe, will only patch when a loop actually exists
 # =========================================================================================
 
 from scraper.web_scraper import scrape_url
