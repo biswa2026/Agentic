@@ -13,6 +13,14 @@ if not os.getenv("OPENAI_API_KEY") or len(os.getenv("OPENAI_API_KEY", "")) < 100
     except:
         pass  # Expected on Streamlit Cloud – secrets already in os.environ
 
+
+# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+# THIS IS THE ONLY PLACE nest_asyncio MUST be applied
+import nest_asyncio
+nest_asyncio.apply()
+# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+
+
 # Extract domain name safely
 TARGET_URL = os.getenv("TARGET_URL", "").strip()
 domain_name = (
