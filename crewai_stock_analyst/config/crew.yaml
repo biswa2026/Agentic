@@ -1,0 +1,18 @@
+name: "Hybrid Crew POC"
+description: "Crew defined in YAML, agents & tasks defined in Python."
+
+process: sequential
+verbose: true
+
+llm:
+  provider: openai
+  model: gpt-4o-mini
+  api_key: ${OPENAI_API_KEY}
+
+agents:
+  - resercher_agent
+  - write_agent
+
+tasks:
+  - research_task
+  - writing_task
