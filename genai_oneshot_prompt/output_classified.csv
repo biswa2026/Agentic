@@ -1,0 +1,110 @@
+cust_id,account_num,event_dt,conversation_summary,driver,sub_driver
+C0001,AC10001,2025-12-01,Customer experiences nightly internet drops at 9 PM,Network,Scheduled outages
+C0002,AC10002,2025-12-01,Customer reports being charged twice on their last billing statement,Billing,Duplicate charges
+C0003,AC10003,2025-12-01,Customer expresses frustration over being on hold for an extended period with support,Experience,Long hold times
+C0004,AC10004,2025-12-01,Customer expresses inability to pay bill due to job loss,Financial Hardship,Inability to pay due to unemployment
+C0005,AC10005,2025-12-01,Customer mentions a competitor offering a cheaper plan,Competitor Offer,Cheaper pricing
+C0006,AC10006,2025-12-01,Customer reports weak network signal indoors,Network,Weak signal strength
+C0007,AC10007,2025-12-01,Customer questions an unusually high bill with no explanation provided,Billing,Unexplained charges
+C0008,AC10008,2025-12-01,Customer experiences app crashes during bill payment attempts,Billing,App functionality issues
+C0009,AC10009,2025-12-01,Customer requests a payment extension due to financial difficulties,Financial Hardship,Payment extension request
+C0010,AC10010,2025-12-01,Customer mentions a competitor offering better coverage in their area,Competitor Offer,Coverage comparison
+,,,Customer provided an unclear or incomplete message.,Experience,Unclear communication
+C0011,AC10011,2025-12-02,Customer reports extremely slow internet speed during the evenings,Network,Slow performance
+C0012,AC10012,2025-12-02,Customer inquires about an unexpected fee on their invoice,Billing,Unexplained charges
+C0013,AC10013,2025-12-02,Customer experiences repeated call transfers by support agents,Experience,Call handling issues
+C0014,AC10014,2025-12-02,Customer expresses inability to pay the bill this month,Financial Hardship,Payment difficulty
+C0015,AC10015,2025-12-02,Customer mentions a competitor offering free installation services,Competitor Offer,Free installation promotion
+C0016,AC10016,2025-12-02,Customer experiences random call drops,Network,Call quality issues
+C0017,AC10017,2025-12-02,Customer questions late fee despite timely payment,Billing,Late fee dispute
+C0018,AC10018,2025-12-02,Customer reports that the technician did not arrive for the scheduled appointment,Experience,Missed appointment
+C0019,AC10019,2025-12-02,Customer requests a lower-cost plan due to financial difficulties,Financial Hardship,Request for reduced pricing
+C0020,AC10020,2025-12-02,Customer compares competitor plans and finds them cheaper,Competitor Offer,Price comparison
+,,,Customer provided an unclear or incomplete response,Experience,Unclear communication
+C0021,AC10021,2025-12-03,Customer experiences frequent Wi-Fi disconnections throughout the day,Network,Frequent disconnections
+C0022,AC10022,2025-12-03,Customer notices removal of promotional discount from their bill,Billing,Loss of promotional discount
+C0023,AC10023,2025-12-03,Customer experienced rudeness and unhelpfulness from service representatives,Experience,Poor customer service
+C0024,AC10024,2025-12-03,Customer expresses difficulty in managing payment obligations,Financial Hardship,Payment difficulties
+C0025,AC10025,2025-12-03,Customer mentions a competitor offering unlimited data,Competitor Offer,Unlimited data plan
+C0026,AC10026,2025-12-03,Customer reports no signal at their office location,Network,No signal
+C0027,AC10027,2025-12-03,Customer disputes bill amount due to discrepancies with usage,Billing,Billing discrepancy
+C0028,AC10028,2025-12-03,Customer finds the app confusing and difficult to navigate,Experience,User interface issues
+C0029,AC10029,2025-12-03,Customer reports loss of income and requests payment assistance,Financial Hardship,Payment assistance request
+C0030,AC10030,2025-12-03,Customer mentions competitor offering superior roaming options,Competitor Offer,Roaming options comparison
+,,,Customer input is unclear or incomplete.,Experience,Unclear communication
+C0031,AC10031,2025-12-04,Customer experiences internet outages every weekend,Network,Scheduled downtime
+C0032,AC10032,2025-12-04,Customer reports being overcharged for international call charges,Billing,Overcharge dispute
+C0033,AC10033,2025-12-04,Customer's issue was closed without resolution,Experience,Unresolved ticket closure
+C0034,AC10034,2025-12-04,Customer expresses inability to pay the full bill this month,Financial Hardship,Partial payment request
+C0035,AC10035,2025-12-04,Customer mentions a competitor offering cashback incentives,Competitor Offer,Cashback promotion
+C0036,AC10036,2025-12-04,Customer reports mobile data issues in their area,Network,Service outage
+C0037,AC10037,2025-12-04,Customer reports monthly billing errors,Billing,Recurring billing mistakes
+C0038,AC10038,2025-12-04,Customer expresses frustration over lack of follow-up from support,Experience,Poor communication
+C0039,AC10039,2025-12-04,Customer requests a hardship plan because of medical expenses,Financial Hardship,Medical expenses
+C0040,AC10040,2025-12-04,"Customer compares family plans with a competitor, indicating dissatisfaction with current offerings",Competitor Offer,Family plan comparison
+,,,Customer provided an unclear or incomplete message.,Experience,Unclear communication
+C0041,AC10041,2025-12-05,Customer experiences internet disconnections during video calls,Network,Connection stability
+C0042,AC10042,2025-12-05,Customer is confused about additional charges on their bill,Billing,Unexplained charges
+C0043,AC10043,2025-12-05,Customer expresses frustration over long wait times to reach support,Experience,Support accessibility
+C0044,AC10044,2025-12-05,Customer expresses concern about missing payments due to financial difficulties,Financial Hardship,Payment issues
+C0045,AC10045,2025-12-05,Customer mentions that a competitor offers faster internet speeds,Competitor Offer,Faster speeds
+C0046,AC10046,2025-12-05,Customer expresses concerns about inadequate network coverage in rural locations,Network,Poor rural coverage
+C0047,AC10047,2025-12-05,Customer notices an unexpected increase in their bill without prior notification,Billing,Unnotified rate increase
+C0048,AC10048,2025-12-05,Customer expresses dissatisfaction with technician's professionalism,Experience,Service quality
+C0049,AC10049,2025-12-05,Customer requests a temporary payment arrangement,Financial Hardship,Payment plan request
+C0050,AC10050,2025-12-05,Customer mentions a more attractive bundle deal from a competitor,Competitor Offer,Better pricing and value
+,,,Customer provided an unclear or incomplete response,Experience,Unclear communication
+C0051,AC10051,2025-12-06,Customer reports a prolonged internet outage lasting several hours,Network,Extended outage
+C0052,AC10052,2025-12-06,Customer reports incorrect tax charges on their bill,Billing,Incorrect charges
+C0053,AC10053,2025-12-06,Customer experienced an unexpected disconnection during support chat,Experience,Support interaction failure
+C0054,AC10054,2025-12-06,Customer is unable to manage payments because of reduced income,Financial Hardship,Inability to pay bills
+C0055,AC10055,2025-12-06,Customer mentions competitor offering no contract plans,Competitor Offer,No contract plans
+C0056,AC10056,2025-12-06,Customer reports lack of network coverage in the basement,Network,Coverage issue
+C0057,AC10057,2025-12-06,Customer reports recurring billing errors,Billing,Repetitive billing discrepancies
+C0058,AC10058,2025-12-06,Customer expresses dissatisfaction with a recent service visit,Experience,Service quality
+C0059,AC10059,2025-12-06,Customer requests bill relief citing financial hardship,Financial Hardship,Request for bill assistance
+C0060,AC10060,2025-12-06,Customer mentions a competitor's offer of free roaming services,Competitor Offer,Free roaming promotion
+,,,Customer provided an unclear or incomplete message,Experience,Unclear communication
+C0061,AC10061,2025-12-07,Customer reports inconsistent internet speed,Network,Speed fluctuations
+C0062,AC10062,2025-12-07,Customer reports unexpected roaming charges on their account,Billing,Roaming charges
+C0063,AC10063,2025-12-07,Customer expresses dissatisfaction with the support agent's knowledge,Experience,Agent competency
+C0064,AC10064,2025-12-07,Customer requests a lower bill due to financial difficulties,Financial Hardship,Request for bill reduction
+C0065,AC10065,2025-12-07,Customer mentions another provider with better reviews,Competitor Offer,Comparative service quality
+C0066,AC10066,2025-12-07,Customer reports high network latency affecting gaming performance,Network,High latency
+C0067,AC10067,2025-12-07,Customer reports being billed for a cancelled service,Billing,Incorrect charges
+C0068,AC10068,2025-12-07,Customer reports a delay in service installation,Experience,Installation delay
+C0069,AC10069,2025-12-07,Customer expresses difficulty in making payments due to financial hardship,Financial Hardship,Payment difficulties
+C0070,AC10070,2025-12-07,Customer mentions competitor's flexible contract offerings,Competitor Offer,Flexible contracts
+,,,Customer provided an unclear or incomplete message.,Experience,Communication issue
+C0071,AC10071,2025-12-08,Customer experiences frequent packet loss on their connection,Network,Packet loss
+C0072,AC10072,2025-12-08,Customer finds the billing statement unclear,Billing,Statement clarity
+C0073,AC10073,2025-12-08,Customer expresses dissatisfaction with the lengthy support resolution time,Experience,Slow support response
+C0074,AC10074,2025-12-08,Customer expresses inability to pay overdue balance,Financial Hardship,Overdue payment issue
+C0075,AC10075,2025-12-08,Customer mentions competitor offering loyalty discounts,Competitor Offer,Loyalty discounts
+C0076,AC10076,2025-12-08,Customer reports loss of internet service following recent maintenance work,Network,Service disruption after maintenance
+C0077,AC10077,2025-12-08,Customer reports issues due to an incorrect billing address,Billing,Address discrepancy
+C0078,AC10078,2025-12-08,Customer expresses dissatisfaction with recent decline in service quality,Experience,Service quality issues
+C0079,AC10079,2025-12-08,Customer is seeking assistance through a hardship program,Financial Hardship,Hardship assistance request
+C0080,AC10080,2025-12-08,Customer notes that competitor pricing is clearer than current offerings,Competitor Offer,Pricing transparency
+,,,Customer provided an unclear or incomplete response,Experience,Unclear communication
+C0081,AC10081,2025-12-09,Customer experiences internet disconnections during peak usage times,Network,Peak hour disconnections
+C0082,AC10082,2025-12-09,Customer reports duplicate charges on their account,Billing,Incorrect charges
+C0083,AC10083,2025-12-09,Customer expresses frustration over lack of follow-up from support,Experience,Poor communication
+C0084,AC10084,2025-12-09,Customer is unable to clear their account balance,Billing,Account balance issue
+C0085,AC10085,2025-12-09,Customer compares service quality with another provider's customer service,Competitor Offer,Customer service comparison
+C0086,AC10086,2025-12-09,Customer experiences poor network performance during travel,Network,Performance issues while roaming
+C0087,AC10087,2025-12-09,Customer indicates that a billing dispute remains unresolved,Billing,Dispute resolution
+C0088,AC10088,2025-12-09,Customer reports incorrect usage information displayed in the app,Experience,App functionality issue
+C0089,AC10089,2025-12-09,Customer expresses financial difficulties stemming from a family emergency,Financial Hardship,Family emergency impact
+C0090,AC10090,2025-12-09,Customer compares data allowance with a competitor's offering,Competitor Offer,Data allowance comparison
+,,,Customer input is unclear or incomplete,Experience,Unclear communication
+C0091,AC10091,2025-12-10,Customer experiences buffering issues while streaming videos,Network,Streaming performance
+C0092,AC10092,2025-12-10,Customer reports unexpected extra fees with no explanation provided,Billing,Unexplained charges
+C0093,AC10093,2025-12-10,Customer expresses dissatisfaction with the incorrect closure of a support ticket,Experience,Ticket handling issues
+C0094,AC10094,2025-12-10,Customer seeks assistance with overdue bill management,Billing,Overdue payments
+C0095,AC10095,2025-12-10,Customer mentions a competitor offering a trial period,Competitor Offer,Trial promotion
+C0096,AC10096,2025-12-10,Customer reports no signal issue following SIM replacement,Network,SIM-related connectivity issue
+C0097,AC10097,2025-12-10,Customer reports incorrect billing cycle dates,Billing,Incorrect billing dates
+C0098,AC10098,2025-12-10,Customer expresses dissatisfaction with the onboarding process,Experience,Onboarding issues
+C0099,AC10099,2025-12-10,Customer is inquiring about options for financial assistance,Financial Hardship,Financial assistance inquiry
+C0100,AC10100,2025-12-10,Customer mentions that a competitor offers better rates for international services,Competitor Offer,International rates comparison
