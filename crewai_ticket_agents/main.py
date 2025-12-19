@@ -1,4 +1,3 @@
-import os
 import yaml
 import pandas as pd
 from crewai import Crew
@@ -17,19 +16,15 @@ from tasks import (
     generate_mail
 )
 
-from sendgrid_mailer import send_email_sendgrid
+from gmail_smtp_mailer import send_email_gmail
+from email_templates import build_email_and_escalation
 
 
 def run():
-    # -------------------------------
-    # Load Crew configuration
-    # -------------------------------
+    # Load Crew config
     with open("config/crew.yaml", "r") as f:
         crew_config = yaml.safe_load(f)
 
-    # -------------------------------
-    # Build Crew
-    # -------------------------------
     crew = Crew(
         name=crew_config.get("name", "Customer Support Crew"),
         description=crew_config.get("description", ""),
@@ -49,74 +44,50 @@ def run():
         verbose=True
     )
 
-    # -------------------------------
     # Load tickets from Excel
-    # -------------------------------
-    df = pd.read_excel("config/ticket.xlsx", engine="openpyxl")
+    df = pd.read_excel("config/tickets.xlsx", engine="openpyxl")
+    df=df.head(5)
 
     print(f"\n=== Processing {len(df)} Tickets ===")
 
     results = []
 
-    # -------------------------------
-    # Process each ticket
-    # -------------------------------
-    for idx, row in df.iterrows():
+    for _, row in df.iterrows():
         ticket_id = row["ticket_id"]
         customer_name = row["customer_name"]
         customer_email = row["email"]
-        ticket_text = row["ticket_description"]
 
-        print(f"\n---- Processing Ticket #{ticket_id} for {customer_name} ----")
-
-        crew_input = {
+        email_data = {
             "ticket_id": ticket_id,
             "customer_name": customer_name,
-            "customer_email": customer_email,
-            "ticket": ticket_text
+            "priority": row["priority"],
+            "category": row["category"],
+            "issue_description": row["ticket_description"],
+            "submission_date": row["submission_date"],
+            "agent_name": row["agent_name"],
+            "agent_position": row["agent_position"],
+            "company_name": row["company_name"],
+            "contact_info": row["contact_info"]
         }
 
-        # -------------------------------
-        # Run CrewAI
-        # -------------------------------
-        crew_output = crew.kickoff(crew_input)
+        html_email = build_email_and_escalation(email_data)
 
-        # IMPORTANT: Extract HTML string
-        html_email = crew_output.raw
-
-        if not isinstance(html_email, str):
-            raise TypeError("Crew output is not a string HTML email")
-
-        # -------------------------------
-        # Send Email via SendGrid
-        # -------------------------------
-        subject = f"Support Update for Ticket #{ticket_id}"
-        send_email_sendgrid(
+        send_email_gmail(
             to_email=customer_email,
-            subject=subject,
+            subject=f"Support Ticket Update - #{ticket_id}",
             html_content=html_email
         )
 
-        # -------------------------------
-        # Store results
-        # -------------------------------
         results.append({
             "ticket_id": ticket_id,
             "customer_name": customer_name,
             "email": customer_email,
-            "ticket_description": ticket_text,
-            "html_email": html_email
+            "status": "Email Sent"
         })
 
-    # -------------------------------
-    # Save all results
-    # -------------------------------
-    output_file = "results.xlsx"
-    pd.DataFrame(results).to_excel(output_file, index=False)
+    pd.DataFrame(results).to_excel("results.xlsx", index=False)
 
-    print(f"\n=== ALL TICKETS PROCESSED ===")
-    print(f"📁 Results saved to {output_file}")
-    print(f"📧 Emails sent successfully via SendGrid")
+    print("\n✅ ALL TICKETS PROCESSED SUCCESSFULLY")
 
 
 if __name__ == "__main__":
