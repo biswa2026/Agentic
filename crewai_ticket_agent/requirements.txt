@@ -1,0 +1,9 @@
+crewai>=0.30.0
+openai>=1.35.0
+sendgrid>=6.11.0
+pandas>=2.2.0
+openpyxl>=3.1.2
+PyYAML>=6.0.1
+python-dotenv>=1.0.1
+pydantic>=2.6.0
+requests>=2.31.0

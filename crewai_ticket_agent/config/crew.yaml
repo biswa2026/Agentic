@@ -1,0 +1,21 @@
+name: "Customer Support Crew"
+description: "Processes tickets using multi-agent parallel execution and produces HTML emails."
+process: "sequential"     # << ENABLE PARALLEL PROCESSING
+verbose: true
+
+llm:
+  provider: "openai"
+  model: "gpt-4o-mini"
+  api_key: ${OPENAI_API_KEY}
+
+agents:
+  - classifier_agent
+  - responder_agent
+  - escalation_agent
+  - mail_agent
+
+tasks:
+  - classify_ticket
+  - generate_response
+  - escalate_ticket
+  - generate_mail
