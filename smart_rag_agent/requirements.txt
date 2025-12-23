@@ -2,9 +2,22 @@ streamlit
 requests
 httpx
 beautifulsoup4
-chromadb
+
+# Vector DB (stable, avoids Rust panic)
+chromadb==0.4.15
+
+# LangChain splitters + OpenAI wrappers
 langchain-openai
 langchain-text-splitters
+
+# Async safety
 nest_asyncio
+
+# Env handling
 python-dotenv
+
+# OpenAI compatibility (IMPORTANT)
+openai==0.28.1
+
+# Your agent framework
 openai-agents

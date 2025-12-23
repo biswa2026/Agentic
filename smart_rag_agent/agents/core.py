@@ -1,74 +1,70 @@
+import os
+import openai
 
+# ------------------ Set API key ------------------
+openai.api_key = os.getenv("openai_api_key")
 
-from openai import OpenAI
-
-_client_instance = None
-
-def get_openai_client() -> OpenAI:
-    global _client_instance
-    if _client_instance is None:
-        # At this point Streamlit has already injected the secret into os.environ
-        _client_instance = OpenAI()
-    return _client_instance
-    
-# 1. ModelSettings — just a tiny container
+# ------------------ ModelSettings — tiny container ------------------
 class ModelSettings:
     def __init__(self, max_tokens=512):
         self.max_tokens = max_tokens
 
-# 2. @function_tool — does nothing fancy, just marks the function
+# ------------------ function_tool decorator ------------------
 def function_tool(func):
     return func
 
-# 3. SQLiteSession — only needed to exist (your code never really uses it deeply)
+# ------------------ SQLiteSession placeholder ------------------
 class SQLiteSession:
     def __init__(self, name): pass
     def close(self): pass
 
-# 4. Agent — just stores the settings (never used beyond this)
+# ------------------ Agent ------------------
 class Agent:
-    def __init__(self, name, instructions, tools=None, handoffs=None, model="gpt-4o-mini", model_settings=None):
+    def __init__(self, name, instructions, tools=None, handoffs=None, model="text-davinci-003", model_settings=None):
         self.name = name
         self.instructions = instructions
         self.tools = tools or []
         self.model = model
         self.model_settings = model_settings or ModelSettings()
 
-# 5. Runner — the ONLY thing that really matters
+# ------------------ Runner ------------------
 class Runner:
     @staticmethod
     def run_sync(agent, user_input, session=None, max_turns=3):
-        # Find the retrieval tool (it's always the first one in your code)
+        """
+        Synchronous runner using old OpenAI API (0.28.1)
+        """
+
+        # Find the retrieval tool (if any)
         retrieval_tool = next((t for t in agent.tools if t.__name__ == "retrieve_context"), None)
 
-        # First ask GPT
+        # Initial system + user message
         messages = [
             {"role": "system", "content": agent.instructions},
             {"role": "user", "content": user_input}
         ]
 
-        response = client.chat.completions.create(
-            model=agent.model,
-            messages=messages,
+        # GPT call using old API
+        response = openai.Completion.create(
+            engine=agent.model,
+            prompt=f"{agent.instructions}\n\nUser: {user_input}\nAssistant:",
             max_tokens=agent.model_settings.max_tokens
         )
-        answer = response.choices[0].message.content
+        answer = response.choices[0].text.strip()
 
-        # If we have context tool and answer looks weak → force context
+        # Use retrieval tool if answer is weak or NO_CONTEXT_FOUND
         if retrieval_tool and ("NO_CONTEXT_FOUND" in answer or len(answer) < 50):
-            context = retrieval_tool(user_input)  # call your retrieve_context
-            messages.append({"role": "assistant", "content": answer})
-            messages.append({"role": "user", "content": f"Context:\n{context}\n\nNow answer properly."})
-
-            final = client.chat.completions.create(
-                model=agent.model,
-                messages=messages,
+            context = retrieval_tool(user_input)
+            augmented_prompt = f"{agent.instructions}\n\nContext:\n{context}\n\nUser: {user_input}\nAssistant:"
+            final = openai.Completion.create(
+                engine=agent.model,
+                prompt=augmented_prompt,
                 max_tokens=agent.model_settings.max_tokens
             )
-            answer = final.choices[0].message.content
+            answer = final.choices[0].text.strip()
 
-        # Fake result object — your code only reads .final_output
+        # Fake Result object to mimic your previous usage
         class Result:
-            final_output = answer.strip()
+            final_output = answer
 
         return Result()

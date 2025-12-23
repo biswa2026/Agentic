@@ -1,16 +1,16 @@
-# utils/helpers.py
-'''import asyncio
-import nest_asyncio
-
 def apply_nest_asyncio():
-    """Call this once at the start of your app if you need nested event loops."""
-    loop = asyncio.get_event_loop_policy().get_event_loop()
-    if loop.is_running():
-        nest_asyncio.apply()
+    """
+    Safely apply nest_asyncio only if an event loop is already running.
+    Prevents RuntimeError and Streamlit Cloud issues.
+    """
+    try:
+        import asyncio
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        return  # No running loop → do nothing
 
-# Optional: auto-apply the very first time the module is imported in a running loop
-try:
-    apply_nest_asyncio()
-except RuntimeError:  # no running loop yet → fine, we'll apply later
-    pass'''
-pass
+    try:
+        import nest_asyncio
+        nest_asyncio.apply()
+    except Exception:
+        pass
