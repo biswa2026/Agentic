@@ -1,1 +1,0 @@
-script /drive here/output.txt
